@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classes from "./ARoom.module.css";
 import { Link } from "react-router-dom";
 import Facilities from "../RoomType/Facilities";
 import BackDrop from "../pages/BackDrop";
+import parse from "html-react-parser";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRoomType, selectRoomTypeById } from "../RoomType/roomTypeSlice";
-import { fetchAllRoom, getAllRoom, getFilteredDate, setSelected } from "./roomSlice";
+import { selectRoomTypeById } from "../RoomType/roomTypeSlice";
+import { getAllRoom, getFilteredDate, setSelected } from "./roomSlice";
 
 const ARoom = (props) => {
    
@@ -46,43 +47,78 @@ const ARoom = (props) => {
   console.log("All Rooms in <ARoom>:"+allrooms)
 
   const onSelected = () => {
-    dispatch(setSelected(Number(props.id)))
+    dispatch(setSelected( Number(props.id)));
 
-    
   };
 
   
+  // let numberOfRoom = 1;
+  // const onSelected = () => {
+  //   numberOfRoom++;
+  //   const totalRoom = Number(props.totalRoom)
+  //   console.log("TOTALROOM: "+totalRoom)
+  //   if(numberOfRoom <= totalRoom)
+  //   dispatch(setSelected({ id: Number(props.id), numberOfRoom }));
 
+    
+  // };
 
+  
+
+  const accId = `accordionFlushExample${props.id}`
+  const accData = `#accordionFlushExample${props.id}`
   const container = `container ${classes.modal}`
+  // console.log("Total Room in A room: "+props.totalRoom)
 
   function RoomView1(){
    
   return (
     <div className={container}>
         
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    {/* <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+  <div className="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img src={props.image2} className="d-block w-100" alt="..."/>
+    </div>
+    <div className="carousel-item">
+      <img src={props.image3} className="d-block w-100" alt="..."/>
+    </div>
+    <div className="carousel-item">
+      <img src={props.image1} className="d-block w-100" alt="..."/>
+    </div>
+  </div>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</div> */}
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
+      <img src={props.image1} class="d-block w-100" alt="..."/>
+    </div>
+    <div class="carousel-item">
       <img src={props.image2} class="d-block w-100" alt="..."/>
     </div>
     <div class="carousel-item">
       <img src={props.image3} class="d-block w-100" alt="..."/>
     </div>
-    <div class="carousel-item">
-      <img src={props.image1} class="d-block w-100" alt="..."/>
-    </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -104,8 +140,9 @@ const ARoom = (props) => {
                 {isImageOpen && <BackDrop onDrop={closeHandler}/>}
               </div>
               <div className="col-sm-12 col-md-6">
-                <h5 className="text-primary pt-3 d-block me-5">{props.roomTypeName}</h5>
+                <h5 className=" pt-3 d-block me-5" style={{color: "#29bfc2"}}>{props.roomTypeName}</h5>
                 <ul>
+                  {/* <li>{Number(props.totalRoom)}</li> */}
                   <li>{props.roomTypeDescription}</li>
                   <li>You can add extra bed.</li>
                   <li>2 Adult(s) Under 5 years stays free</li>
@@ -124,6 +161,7 @@ const ARoom = (props) => {
                 
                 <button onClick={onSelected} className="btn">{(props.roomSelected) ? 'Selected' : 'Select'}</button>
               
+              
            
                  
                 
@@ -136,7 +174,7 @@ const ARoom = (props) => {
             </div> */}
             {/* <hr></hr> */}
             
-            <div className="accordion accordion-flush" id="accordionFlushExample{props.id}">
+            <div className="accordion accordion-flush" id={accId}>
           <div className="accordion-item">
             <h2 className="accordion-header">
               <button
@@ -153,11 +191,11 @@ const ARoom = (props) => {
             <div
               id="flush-collapseOne"
               className="accordion-collapse collapse"
-              data-bs-parent="#accordionFlushExample{props.id}"
+              data-bs-parent={accData}
             >
               <div className="accordion-body">
               <h6>Descriptions</h6>
-                <small>{props.description}</small>
+                <small>{parse(props.description)}</small>
               </div>
             </div>
           </div>

@@ -5,13 +5,14 @@ import axios from "axios"
 const GET_ALL_Booking = "http://localhost:8181/api/booking/all"
 const GET_BOOKING_BYUSER = "http://localhost:8181/api/booking/allbooking"
 const ADD_Booking = "http://localhost:8181/api/booking/create"
-const UPDATE_Booking = "http://localhost:8181/api/booking/update"
+const UPDATE_Booking = "http://localhost:8181/api/booking/update/"
 const DELETE_Booking = "http://localhost:8181/api/booking/delete/"
 
 export const fetchBooking = createAsyncThunk('booking/fetchBooking',async() =>{
     const response = await axios.get(GET_ALL_Booking)
     return response.data
 })
+
 
 // export const fetchUserBooking = createAsyncThunk('booking/fetchUserBooking',async(token) =>{
 //     const response = await axios.get(GET_BOOKING_BYUSER,{
@@ -37,9 +38,17 @@ export const addNewBooking = createAsyncThunk('booking/addBooking', async(data)=
 
 export const updateBooking = createAsyncThunk('booking/updateBooking', async(data) => {
     console.log("Update Booking: "+data.booking)
-    const response = await axios.post(UPDATE_Booking,data.booking)
+    console.log("In the Booking Update Slice:"+ data.token)
+    console.log("In the Booking Update Slice:"+ data.bookingId)
+    const response = await axios.post(`${UPDATE_Booking}${data.bookingId}`,{
+        headers:{
+            
+            'Authorization':data.token,
+        },
+    })
     return response.data;
 })
+
 
 export const deleteBooking = createAsyncThunk('booking/deleteBooking', async(data) => {
     console.log("DELETE:"+data.id)
@@ -82,6 +91,7 @@ export const bookingSlice = createSlice({
             state.selectBooking = action.payload
             console.log("selected booking rooms:"+state.selectBooking)
         },
+       
     },
     extraReducers(builder){
         builder

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { selectRoomById, updateRoom } from './roomSlice';
 import { fetchRoomType, getAllRoomType } from '../RoomType/roomTypeSlice';
+import ReactQuill from 'react-quill';
 
 const UpdateRoom = () => {
 
@@ -19,7 +20,7 @@ const UpdateRoom = () => {
     const [roomTypeId , setRoomTypeId] = useState(room?.roomType.id)
     const [addRequestStatus, setAddRequestStatus] = useState("idle");
   
-    const onDescriptionChange = (e) => setDescription(e.target.value);
+    // const onDescriptionChange = (e) => setDescription(e.target.value);
   
     const onImage1Change = (e) => setImage1(e.target.value);
     const onImage2Change = (e) => setImage2(e.target.value);
@@ -85,7 +86,7 @@ const UpdateRoom = () => {
               <label for="roomType" className="form-label">
                   Room Type
                 </label>
-              <select class="form-select"  value={roomTypeId} onChange={onRoomTypeNameChange}>
+              <select className="form-select"  value={roomTypeId} onChange={onRoomTypeNameChange}>
                   <option value="">Choose Room Type</option>
                   {roomTypes.map((roomType) =>
 
@@ -121,7 +122,12 @@ const UpdateRoom = () => {
                 <label for="Description" className="form-label">
                   Description
                 </label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value={description} onChange={onDescriptionChange}></textarea>
+                <ReactQuill
+                    theme="snow"
+                    value={description}
+                    onChange={setDescription}
+                  />
+                {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={description} onChange={onDescriptionChange}></textarea> */}
               </div>
                 <div className="mb-3 text-center">
                   <button type="submit" className="btn btn-primary">

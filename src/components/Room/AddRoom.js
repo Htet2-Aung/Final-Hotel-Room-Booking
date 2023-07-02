@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { fetchRoomType, getAllRoomType } from "../RoomType/roomTypeSlice";
+import ReactQuill from "react-quill";
 
 const AddRoom = () => {
 
@@ -12,14 +13,16 @@ const AddRoom = () => {
   const [image1, setImage1] = useState("");
   const [image2, setImage2] = useState("");
   const [image3, setImage3] = useState("");
+  // const [totalRoom, setTotalRoom] = useState("");
   const [roomTypeId , setRoomTypeId] = useState("")
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
-  const onDescriptionChange = (e) => setDescription(e.target.value);
+  // const onDescriptionChange = (e) => setDescription(e.target.value);
 
   const onImage1Change = (e) => setImage1(e.target.value);
   const onImage2Change = (e) => setImage2(e.target.value);
   const onImage3Change = (e) => setImage3(e.target.value);
+  // const ontotalRoomChange = (e) => setTotalRoom(e.target.value);
   const onRoomTypeNameChange = (e) => setRoomTypeId(e.target.value)
   const canSave =
     [description, image1, image2, image3].every(Boolean) &&
@@ -51,7 +54,8 @@ const AddRoom = () => {
             description,
             image1,
             image2,
-            image3
+            image3,
+            // totalRoom
           },roomTypeId
         })
        ).unwrap()    
@@ -71,17 +75,18 @@ const AddRoom = () => {
 
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid bg-white">
       <div className="row">
-        <div className="col-xl-12 col-lg-10">
-          <div className="card px-4 mb-3">
+        <div className="col-xl-8 col-lg-8">
+          <div className="card px-4 mb-3" style={{boxShadow: " 0 2px 8px rgba(0, 0, 0, 0.2)"}}>
+        
             <form onSubmit={onSubmit}>
               <div className="row my-2">
               <div className="col-md-6">
               <label for="roomType" className="form-label">
                   Room Type
                 </label>
-              <select class="form-select"  value={roomTypeId} onChange={onRoomTypeNameChange}>
+              <select className="form-select"  value={roomTypeId} onChange={onRoomTypeNameChange}>
                   <option value="">Choose Room Type</option>
                   {roomTypes.map((roomType) =>
 
@@ -97,7 +102,7 @@ const AddRoom = () => {
               <div className="col-md-6">
             
                 <label for="image1" className="form-label">
-                  Image1
+                  Room's Bed
                 </label>
                 <input type="text" className="form-control" value={image1} onChange={onImage1Change}  placeholder="Image Url"/>
              
@@ -108,7 +113,7 @@ const AddRoom = () => {
               <div className="col-md-6">
              
                 <label for="image2" className="form-label">
-                  Image2
+                  Room's Bath
                 </label>
                 <input type="text" className="form-control" value={image2} onChange={onImage2Change} placeholder="Image Url" />
               
@@ -116,20 +121,31 @@ const AddRoom = () => {
               <div className="col-md-6">
             
               <label for="image3"  className="form-label">
-                  Image3
+                  Room's Toilet
                 </label>
                 <input type="text" className="form-control" value={image3} onChange={onImage3Change} placeholder="Image Url" />
               </div>
+              {/* <div>
+              <label for="totalRoom"  className="form-label">
+                 Total Room
+                </label>
+                <input type="number" className="form-control" value={totalRoom} onChange={ontotalRoomChange} placeholder="Total Room" />
+              </div> */}
               </div>
               <div className="my-3">
                 <label for="Description" className="form-label">
                   Description
                 </label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value={description} onChange={onDescriptionChange}></textarea>
+                <ReactQuill
+                    theme="snow"
+                    value={description}
+                    onChange={setDescription}
+                  />
+                {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={description} onChange={onDescriptionChange}></textarea> */}
               </div>
               <div className="mb-3 text-center">
-                <button type="submit" className="btn btn-primary">
-                  Submit
+                <button type="submit" className="btn text-light" style={{backgroundColor: "#29bfc2"}}>
+                  Add Room
                 </button>
               </div>
             </form>

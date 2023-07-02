@@ -11,13 +11,13 @@ const BookingRoomTable = () => {
 
   return (
     <div className="MainDiv">
-    <div class=" text-center">
+    <div className=" text-center">
         <h3>Booking Room List</h3>
     </div>
      
     <div className="container">
          
-        <table id="example" class="table table-hover table-bordered">
+        <table id="example" className="table table-hover table-bordered">
         <thead>
           <tr>
             <th>No</th>

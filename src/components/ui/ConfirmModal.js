@@ -13,7 +13,7 @@ function ConfirmModal(props){
 
     return (
         <div className={classes.modal}>
-            <p>Are you sure want to delete?</p>
+            <p style={{color: "#29bfc2"}}>Are you sure want to delete?</p>
             <button className={buttonClasses} onClick={onCancel}>Cancel</button>
             <button className={classes.btn} onClick={onConfirm}>Confirm</button>
         </div>

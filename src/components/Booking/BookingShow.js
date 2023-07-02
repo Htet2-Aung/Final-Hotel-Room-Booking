@@ -8,6 +8,7 @@ import $ from 'jquery';
 import { useDispatch } from 'react-redux';
 import Bookinglist from './BookingList';
 import {  fetchBooking } from './bookingSlice';
+import classes from "../tables/Chart.module.css"
 
 
 const BookingShow = () => {
@@ -23,26 +24,32 @@ const BookingShow = () => {
   $(document).ready(function () {
     setTimeout(function(){
     $('#example').DataTable();
-     } ,1000);
+     } ,500);
 });
+
+
+const card = `card ${classes.card2}`
   
   return (
-    <div className="MainDiv">
-    <div class=" text-center">
+    <div className={card}>
+    <div className=" text-center">
         <h3>Booking List</h3>
     </div>
      
     <div className="container">
          
-    <table id="example" class="table table-hover table-bordered">
+    <table id="example" className="table table-hover table-bordered">
 
         <thead>
           <tr>
-            <th>No</th>
+            <th>Number</th>
             <th>Guest Name</th>
-            <th>Nrc</th>
-            <th>Phone</th>
+            <th>checkIn</th>
+            <th>checkOut</th>
+            <th>Expired</th>
+            <th>Confirm & Email</th>
             <th>Details</th>
+           
             {/* <th>TotalAdults</th>
             <th>TotalChildren</th>
             <th>Special Request</th>

@@ -85,7 +85,7 @@ const UpdateRoomType = () => {
                   Description
                 </label>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   rows="5"
                   id="comment"
                   name="text"

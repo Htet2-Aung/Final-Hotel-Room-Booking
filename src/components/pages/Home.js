@@ -1,28 +1,31 @@
-import bannerImg from "../images/island.jpg"
+// import bannerImg from "../images/island.jpg"
+import bannerImg from "../images/home_page.jpg"
 import ARoom from "../Room/ARoom";
 import classes from "./Home.module.css"
 import ShowRoomType from "../RoomType/ShowRoomType";
 import SearchBar from "./SearchBar";
 import SelectedRoom from "../Room/SelectedRoom";
-import { fetchAllRoom, getFilteredRoom } from "../Room/roomSlice";
+import { fetchAllRoom, getFilteredRoom, getSearchBar } from "../Room/roomSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 
 const Home = () => {
 
  const message = `text-light ${classes.message}` 
  
- 
  const filteredRooms = useSelector(getFilteredRoom)
  console.log("In room detail with filtered rooms: "+filteredRooms)
+ const isSelected = useSelector(getSearchBar)
+ console.log("In room detail for selected component: "+isSelected)
+
 
  const dispatch = useDispatch()
  useEffect(()=>{
    dispatch(fetchAllRoom())
  },[dispatch])
 
- 
+  
   return (
     <>
     <section>
@@ -30,7 +33,7 @@ const Home = () => {
   <h3 className={message}>Book Your Stay Without Hassle</h3>
     <SearchBar/>
     <ShowRoomType/>
-</section>
+ </section>
 
  <section>
     <div className="row mt-3">
@@ -58,7 +61,7 @@ const Home = () => {
        
         </div>
         <div className="col-sm-12 col-md-4 mt-4">
-        <SelectedRoom/>
+       {isSelected && <SelectedRoom/> } 
         </div>
     </div>
     </section>

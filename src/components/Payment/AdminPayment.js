@@ -1,25 +1,23 @@
-import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
 
-import { deletePayment } from "./paymentSlice";
+
 
 const AdminPayment = (props) => {
-  const dispatch = useDispatch()
-  const [isDeleteModal, setDeleteModal] = useState(false);
+  // const dispatch = useDispatch()
+  // const [isDeleteModal, setDeleteModal] = useState(false);
 
-  function deleteHandler() {
-    console.log("hello delete");
-    setDeleteModal(true);
-  }
-  function closeHandler() {
-    setDeleteModal(false);
-  }
-  function confirmHandler() {
-    dispatch(deletePayment({ id: props.id })).unwrap();
-    setDeleteModal(false);
-  }
-  console.log("SetModalOpen: " + isDeleteModal);
+  // function deleteHandler() {
+  //   console.log("hello delete");
+  //   setDeleteModal(true);
+  // }
+  // function closeHandler() {
+  //   setDeleteModal(false);
+  // }
+  // function confirmHandler() {
+  //   dispatch(deletePayment({ id: props.id })).unwrap();
+  //   setDeleteModal(false);
+  // }
+  // console.log("SetModalOpen: " + isDeleteModal);
   return (
     <tr>
       <td>{props.id}</td>

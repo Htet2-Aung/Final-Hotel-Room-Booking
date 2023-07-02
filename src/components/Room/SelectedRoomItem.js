@@ -4,9 +4,12 @@ import { setCancel } from './roomSlice';
 
 const SelectedRoomItem = (props) => {
 
+  
+  // const totalRoom = Number(props.numOfRoom)
     const dispatch = useDispatch()
     const onCancel = () => {
-        dispatch(setCancel(Number(props.id)))
+      dispatch(setCancel(Number(props.id)));
+        // dispatch(setCancel({ id: Number(props.id), numberOfRoom }));
       };
   return (
     <div className="card my-2">

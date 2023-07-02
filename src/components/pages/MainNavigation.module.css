@@ -1,15 +1,19 @@
 .navbg{
-    background-color:lightcyan ;
-   
+    background-color:#2fd5d8 ;
+    z-index: 99999;
+
   }
   .name{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     font-size: xx-large;
-    padding-left: 11%;
-    color: blue;
+    padding-left: 3%;
+    color: white !important;
   }
   .name:hover{
     color: greenyellow;
+  }
+  .menu li{
+    color: white !important;
   }
   .menu li:after {
     content: "";
@@ -19,6 +23,7 @@
     display: block;
     transition: all 0.3s ease;
     bottom: 10%;
+
   }
   .menu li:hover::after {
     width: 100%;

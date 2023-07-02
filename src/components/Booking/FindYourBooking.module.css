@@ -27,3 +27,14 @@
   .contact{
     overflow-x: hidden;
   }
+  .card1{
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+    margin-top: 1%;
+    margin-left: 13%;
+    margin-right: 13%;
+    margin-bottom: 2%;
+    padding: 30px;
+  }

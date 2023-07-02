@@ -34,6 +34,7 @@ const UserList = () => {
         content = userList.map(
             (user) => (
                 <AdminUser
+                    key = {user.id}
                     no = {index++}
                     id = {user.id}
                     firstname = {user.firstname}

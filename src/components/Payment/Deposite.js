@@ -1,11 +1,12 @@
 import classes from "./Deposite.module.css";
-import kbzimg from "../images/kbz.png";
 import BookingSuccess from "./BookingSuccess";
 import { useState } from "react";
 import BackDrop from "../pages/BackDrop";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalPayment, register } from "./paymentSlice";
-import { getAllBookings, oneBooking } from "../Booking/bookingSlice";
+import { getAllBookings } from "../Booking/bookingSlice";
+import { getToken, getUser } from "../../features/auth/authSlice";
+import { sendEmail } from "../Email/emailSlice";
 
 const Deposite = () => {
  
@@ -19,6 +20,14 @@ const Deposite = () => {
   const onCardNumberChange = (e) => setCardnumber(e.target.value);
   const onCVCChange = (e) => setCvc(e.target.value);
   const onCardTypeChange = (e) => setCardtype(e.target.value);
+
+  const user = useSelector(getUser)
+  console.log("User name in deposite:"+user.username)
+
+  const to = (user.username)
+  const subject ='Confirmation'
+  const text = 'We are pleased to inform you that your booking is confirmed!'
+  const token =useSelector(getToken);
 
   const totalPayment = useSelector(getTotalPayment)
   console.log("Total Payment in deposite: "+ totalPayment)
@@ -37,8 +46,13 @@ const Deposite = () => {
  const bookingId = Number(finalbook.id)
    console.log("Final book"+bookingId)
 
+  //  const [invoiceNo, setInvoiceNo] = useState('RO-000')
+  //  setInvoiceNo(invoiceNo+bookingId)
+   const invoiceNo = String('RO-000'+bookingId)
+   console.log("Invoice NO in Deposite :"+ invoiceNo)
+
   const canCreate =
-    [total,holderName, cardNo, cvc, cardType].every(Boolean) &&
+    [total,holderName, cardNo, cvc, cardType,invoiceNo].every(Boolean) &&
     registerRequestStatus === "idle";
 
   const dispatch = useDispatch();
@@ -61,14 +75,16 @@ const Deposite = () => {
           register({
             payment:{
             total,
+            invoiceNo,
             holderName,
             cardNo,
             cvc,
             cardType,
-            },bookingId
+            },bookingId,token
             
           })
         ).unwrap();
+       
         setHoldername("");
         setCardnumber("");
         setCvc("");
@@ -93,22 +109,22 @@ const Deposite = () => {
       <div className="row">
         <div className="col-md-12 col-sm-12">
           <div className={cardbody1}>
-            <div className="row ">
-              <div className="col-2">
-                <img className={classes.img} src={kbzimg} alt="" />
-              </div>
-              <div className="col-10 mt-3">
-                <div className="d-flex">
-                  <label className={classes.header}>PAY WITH KBZ PAY</label>
-                </div>
-              </div>
+            <div className="row text-center">
+            <div> 
+          {/* className={classes.loader}  */}
+          <div className="justify-content-center jimu-primary-loading"></div>
+          </div>
+              
+                  <label className={classes.header1} style={{color: "#29bfc2"}}>Proceeding Payment </label>
+                
+             
             </div>
             <div>
               <div className={text2}>
-                <small class="text-muted ">Amount Due</small>
+                <small className="text-muted ">Amount Due</small>
 
                 <div>
-                  <h1 className={classes.text} >{total}</h1>
+                  <h1 className={classes.text} style={{color: "#29bfc2"}} >{total}</h1>
                 </div>
               </div>
             </div>
@@ -120,7 +136,7 @@ const Deposite = () => {
                       <b>Holdername</b>
                     </h6>
                     <div>
-                      <small class="ml-auto text-muted">(required)</small>
+                      <small className="ml-auto text-muted">(required)</small>
                     </div>
                   </label>
                   <input
@@ -139,7 +155,7 @@ const Deposite = () => {
                         <b>Card Number</b>
                       </h6>
                       <div>
-                        <small class="ml-auto text-muted">(required)</small>
+                        <small className="ml-auto text-muted">(required)</small>
                       </div>
                     </label>
                     <input
@@ -148,15 +164,17 @@ const Deposite = () => {
                       id="cardNo"
                       onChange={onCardNumberChange}
                       value={cardNo}
+                      max="9999999999999999"
+                      min="0000000000000001"
                     />
                   </div>
                   <div className="mt-3">
                     <label className=" d-flex flex-row justify-content-between">
                       <h6>
-                        <b>CVC</b>{" "}
+                        <b>CVC</b>
                       </h6>
                       <div>
-                        <small class="ml-auto text-muted">(required)</small>
+                        <small className="ml-auto text-muted">(required)</small>
                       </div>
                     </label>
                     <input
@@ -165,6 +183,8 @@ const Deposite = () => {
                       id="cvc"
                       onChange={onCVCChange}
                       value={cvc}
+                      max="999"
+                      min="0"
                     />
                   </div>
                   <div className="mt-3">
@@ -173,21 +193,23 @@ const Deposite = () => {
                         <b>Card Type</b>{" "}
                       </h6>
                       <div>
-                        <small class="ml-auto text-muted">(required)</small>
+                        <small className="ml-auto text-muted">(required)</small>
                       </div>
                     </label>
                     <select required className="form-select" value={cardType} onChange={onCardTypeChange}>
+                  <option value="">Choose Your Card Tpye</option>
                   <option value="Master Card">Master Card</option>
                   <option value="Credit Card">Credit Card</option>
                   <option value="MPU Card">MPU Card</option>
-                  <option value="Visa Cars">Visa Card</option>
+                  <option value="Visa Card">Visa Card</option>
                 </select>
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-success mt-4 mb-2 "
+                    className="btn text-light mt-4 mb-2 "
                     onClick={successHandler}
                     disabled={!canCreate}
+                    style={{backgroundColor: "#29bfc2"}} 
                   >
                     Deposite
                   </button>

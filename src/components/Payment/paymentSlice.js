@@ -13,9 +13,13 @@ export const fetchAllPayments = createAsyncThunk('payment/fetchAllPayments',asyn
 
 
 export const register = createAsyncThunk('payment/register', async (data) => {
-    console.log(data.payment.cvc)
+    console.log(data.payment)
     console.log(data.bookingId)
-    const response = await axios.post (`${REGISTER_URL}${data.bookingId}`,data.payment)
+    console.log(data.token)
+    const response = await axios.post (`${REGISTER_URL}${data.bookingId}`,data.payment,{
+        headers:{
+            'Authorization':data.token
+        }})
     return response.data
 })  
 
@@ -88,6 +92,8 @@ export const getPaymentStatus = (state) => state.payments.status
 export const getPaymentError = (state) => state.payments.error
 export const getTotalPayment = (state) => state.payments.totalPayment
 export const selectPaymentById = (state, paymentId) => state.payments.payments.find(payment => payment.id === paymentId)
+export const selectPaymentByBKId = (state, bkId) => state.payments.payments.find(payment => payment.bookingId === bkId)
+
 
 export const getPayment = (state) => state.payments.payment
 

@@ -3,10 +3,11 @@
     border-radius: 6px;
     background-color: white;
     padding: 1rem;
-    
-    width: 30rem;
+    height: 30rem;
+    width: 20rem;
     z-index: 10;
     position: fixed;
-    top: 8vh;
+    top: 10vh;
     left: calc(50% - 15rem);
+    overflow-y: scroll;
   }

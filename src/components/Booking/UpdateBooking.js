@@ -24,15 +24,15 @@ const UpdateBooking = () => {
   const [numOfRoom, setNumOfRoom] = useState(booking?.numOfRoom);
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
-  const onIdChange = (e) => setId(e.target.value);
+  // const onIdChange = (e) => setId(e.target.value);
   const onGuestNameChange = (e) => setguestName(e.target.value);
   const onNrcChange = (e) => setNrc(e.target.value);
   const onPhoneChange = (e) => setPhone(e.target.value);
   const onCountryOfOriginChange = (e) => setCountryOfOrigin(e.target.value);
-  const onTotalAdultsChange = (e) => setTotalAdults(e.target.value);
-  const onTotalChildrenChange = (e) => setTotalChildren(e.target.value);
+  // const onTotalAdultsChange = (e) => setTotalAdults(e.target.value);
+  // const onTotalChildrenChange = (e) => setTotalChildren(e.target.value);
   const onSpecialRequestChange = (e) => setSpecialRequest(e.target.value);
-  const onNumOfRoomChange = (e) => setNumOfRoom(e.target.value);
+  // const onNumOfRoomChange = (e) => setNumOfRoom(e.target.value);
 
   const cansave =
     [
@@ -127,7 +127,7 @@ const UpdateBooking = () => {
                     NRC
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     rows="5"
                     id="nrc"
                     name="number"

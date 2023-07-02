@@ -15,6 +15,7 @@ const Contact = () => {
           <div className={classes.mapouter}>
             <div className={classes.gmapcanvas}>
               <iframe
+                id="map"
                 className={classes.gampiframe}
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60567.47202534452!2d94.27463001991549!3d18.417093659842067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30b91f25bd05e8a3%3A0xfae3c6c8e47d68e3!2sBayview%20-%20the%20beach%20resort!5e0!3m2!1sen!2smm!4v1684571361303!5m2!1sen!2smm"
               ></iframe>
@@ -32,10 +33,10 @@ const Contact = () => {
             <i className='fas fa-map-marker-alt text-danger fa-2x'></i>
             </div>
             <div className="col-sm-3">
-              <i class='fas fa-2x fa-phone text-primary '></i>
+              <i className='fas fa-2x fa-phone text-primary '></i>
             </div>
             <div className="col-sm-3">
-            <i class='fas fa-envelope fa-2x text-danger'></i>
+            <i className='fas fa-envelope fa-2x text-danger'></i>
             </div>
             <div className="col-sm-3">
               <Link to="https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F121402764575091%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink%26source_id%3D1441792%26recurring_notification%3D0">
@@ -54,7 +55,7 @@ const Contact = () => {
             <div className="col-sm-3">
               <div className={classes.location}>
               <h6 className="fw-bold">
-            Bayview - the beach resort
+           Relaxation Oasis Hotel
             </h6>
             <small>Ngapali Beach, MM, Gyeiktaw Main St, Thandwe 07171</small>
               </div>
@@ -63,11 +64,9 @@ const Contact = () => {
             </div>
             <div className="col-sm-3">
               <div className={classes.phone}>
-              <h6>
-            09-123456789
-            </h6>
+           
             <h6>
-            09-123456789
+            09-940700008
             </h6>
               </div>
             
@@ -75,7 +74,7 @@ const Contact = () => {
             <div className="col-sm-3">
               <div className={classes.mail}>
               <h6 className="fw-bold">
-            bayview@gmail.com
+            relax.oasis@gmail.com
             </h6>
               </div>
            

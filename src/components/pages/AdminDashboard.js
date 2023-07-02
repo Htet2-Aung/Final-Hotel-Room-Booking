@@ -1,46 +1,20 @@
-import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import CreateRoomType from "../RoomType/CreateRoomType";
 import AdminCards from "./AdminCards";
-import AddRoom from "../Room/AddRoom";
-import Facilities from "../RoomType/Facilities";
-import RoomTypeTable from "../tables/RoomTypeTable";
 import { getToken, logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./AdminDashboard.module.css"
+import { getCard, getChart, getCustom, setCard, setChart, setCustom } from "../BookingRoom/bookingRoomSlice";
+import oasis from "../images/oasis.png"
+import ChartTable from "../tables/ChartTable";
 
 const AdminDashboard = () => {
 
-    const nav = `navbar-nav sidebar sidebar-light accordion ${classes.navbg}`
+    const nav = `navbar-nav sidebar  accordion ${classes.navbg}`
     
-    const [isCardOpen,setCardOpen] = useState(true)
-    const [isRoomOpen,setRoomOpen] = useState(false)
-    const [isRoomTypeOpen,setRoomTypeOpen] = useState(false)
-    const [isRoomTypeTable,setRoomTypeTable] = useState(false)
-
-
-    function showCard(){
-        setCardOpen(true)
-    }
-    function showRoomForm(){
-        setRoomOpen(true)
-        setRoomTypeOpen(false)
-        setCardOpen(false)
-    }
-
-    function showRoomTypeForm(){
-        setRoomTypeOpen(true)
-        setRoomOpen(false)
-        setCardOpen(false)
-    }
-
-    function showRoomTypeTable(){
-      setRoomTypeTable(true)
-      setCardOpen(false)
-
-    }
-    console.log("Set Room form:"+isRoomOpen)
-
+    const showCard = useSelector(getCard)
+    const isCustom = useSelector(getCustom)
+    const isChart = useSelector(getChart)
+    
     const token = useSelector(getToken);
 
   const dispatch = useDispatch();
@@ -49,23 +23,44 @@ const AdminDashboard = () => {
   if (token) {
     adminAccountItem = (
       <Link
-        to="/admin"
-        className="text-light"
+        to="/login"
+        className="nav-link"
+        
         onClick={() => {
           dispatch(logout());
-        }}
+          
+        } }
       >
-        Log out
+       <i className="fas fa-sign-out-alt "></i>
+       <span>Log out</span>
       </Link>
     );
   } else {
     adminAccountItem = (
-      <Link to="/login" className="text-light">
+      <Link to="/" className="dropdown-item">
         Log in
       </Link>
     );
   }
 
+
+  const hideCard = (e) => {
+    e.preventDefault()
+    dispatch(setCard(false))
+    dispatch(setCustom(true))
+    dispatch(setChart(false))
+    
+  }
+
+  const isShown = (e) => {
+    e.preventDefault()
+    dispatch(setCard(true))
+    dispatch(setCustom(false))
+    dispatch(setChart(true))
+  }
+
+
+  console.log("In the admin dashboard for card: "+showCard)
 
 
     
@@ -78,20 +73,21 @@ const AdminDashboard = () => {
       >
         <Link
           className="sidebar-brand d-flex align-items-center justify-content-center"
-          to="/"
+          to="/admin" onClick={isShown}
         >
-          <div className="sidebar-brand-icon rotate-n-15">
-            <i className="fas fa-laugh-wink"></i>
+          <div className="sidebar-brand-icon">
+            {/* <i className="fas fa-laugh-wink"></i>  rotate-n-15*/}
+            <img src={oasis} className="w-100"/>
           </div>
-          <div className="sidebar-brand-text mx-3">
-          Land <sup>Of</sup>  <sub>Happiness</sub>
+          <div className="sidebar-brand-text mx-3 text-white">
+          Relaxation Oasis 
           </div>
         </Link>
 
         <hr className="sidebar-divider bg-light my-0" />
 
         <li className="nav-item active">
-          <Link className="nav-link" to="/admin" onClick={showCard}>
+          <Link className="nav-link" to="/admin" onClick={isShown}>
             <i className="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </Link>
@@ -119,7 +115,7 @@ const AdminDashboard = () => {
             aria-labelledby="headingPages"
             data-parent="#accordionSidebar"
           >
-            <div className="bg-white py-2 collapse-inner rounded">
+            <div className="bg-white py-2 collapse-inner rounded" onClick={hideCard}>
               <h6 className="collapse-header">Custom Components:</h6>
               <Link to="/admin/addroom" className="collapse-item">Create Room</Link>
               
@@ -147,17 +143,12 @@ const AdminDashboard = () => {
             aria-labelledby="headingTables"
             data-parent="#accordionSidebar"
           >
-            <div className="bg-white py-2 collapse-inner rounded">
+            <div className="bg-white py-2 collapse-inner rounded"  onClick={hideCard}>
               <h6 className="collapse-header">Custom Components:</h6>
               <Link className="collapse-item" to="/admin/userlist-table">
                 User Table
               </Link>
-              <a className="collapse-item" href="buttons.html">
-                Role Table
-              </a>
-              <a className="collapse-item" href="buttons.html">
-                UserRole Table
-              </a>
+             
               <Link className="collapse-item" to='/admin/bookingTable'>
                 Booking Table
               </Link>
@@ -171,35 +162,36 @@ const AdminDashboard = () => {
               <Link className="collapse-item" to="/admin/paymentTable">
                 Payment Table
               </Link>
+             
             </div>
           </div>
         </li>
-
+        <div  onClick={isShown}>
         <li className="nav-item">
-          <a className="nav-link" href="charts.html">
+          <Link className="nav-link" to="/admin">
             <i className="fas fa-fw fa-chart-area"></i>
             <span>Charts</span>
-          </a>
+          </Link>
         </li>
-
+</div>
 
         <hr className="sidebar-divider bg-light d-none d-md-block" />
 
         <li className="nav-item">
-          <a className="nav-link" href="charts.html">
-            <i className="fas fa-fw fa-chart-area"></i>
-            <span>{adminAccountItem}</span>
-          </a>
+       
+         
+            {adminAccountItem}
+         
         </li>
         <hr className="sidebar-divider bg-light d-none d-md-block" />
-        <div className="text-center d-none d-md-inline">
+        {/* <div className="text-center d-none d-md-inline">
           <button className="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        </div> */}
       </ul>
 
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
-          <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <nav className="navbar navbar-expand navbar-light bg-white topbar  static-top ">
             <button
               id="sidebarToggleTop"
               className="btn btn-link d-md-none rounded-circle mr-3"
@@ -207,303 +199,40 @@ const AdminDashboard = () => {
               <i className="fa fa-bars"></i>
             </button>
 
-            {/* <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control bg-light border-0 small"
-                  placeholder="Search for..."
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-primary" type="button">
-                    <i className="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form> */}
 
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item dropdown no-arrow d-sm-none">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="searchDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="fas fa-search fa-fw"></i>
-                </a>
-
-                <div
-                  className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                  aria-labelledby="searchDropdown"
-                >
-                  <form className="form-inline mr-auto w-100 navbar-search">
-                    <div className="input-group">
-                      <input
-                        type="text"
-                        className="form-control bg-light border-0 small"
-                        placeholder="Search for..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon2"
-                      />
-                      <div className="input-group-append">
-                        <button className="btn btn-primary" type="button">
-                          <i className="fas fa-search fa-sm"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </li>
-
-              <li className="nav-item dropdown no-arrow mx-1">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="alertsDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="fas fa-bell fa-fw"></i>
-
-                  <span className="badge badge-danger badge-counter">3+</span>
-                </a>
-
-                <div
-                  className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="alertsDropdown"
-                >
-                  <h6 className="dropdown-header">Alerts Center</h6>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="mr-3">
-                      <div className="icon-circle bg-primary">
-                        <i className="fas fa-file-alt text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="small text-gray-500">December 12, 2019</div>
-                      <span className="font-weight-bold">
-                        A new monthly report is ready to download!
-                      </span>
-                    </div>
-                  </a>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="mr-3">
-                      <div className="icon-circle bg-success">
-                        <i className="fas fa-donate text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="small text-gray-500">December 7, 2019</div>
-                      $290.29 has been deposited into your account!
-                    </div>
-                  </a>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="mr-3">
-                      <div className="icon-circle bg-warning">
-                        <i className="fas fa-exclamation-triangle text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="small text-gray-500">December 2, 2019</div>
-                      Spending Alert: We've noticed unusually high spending for
-                      your account.
-                    </div>
-                  </a>
-                  <a
-                    className="dropdown-item text-center small text-gray-500"
-                    href="#"
-                  >
-                    Show All Alerts
-                  </a>
-                </div>
-              </li>
-
-              <li className="nav-item dropdown no-arrow mx-1">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="messagesDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="fas fa-envelope fa-fw"></i>
-
-                  <span className="badge badge-danger badge-counter">7</span>
-                </a>
-
-                <div
-                  className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="messagesDropdown"
-                >
-                  <h6 className="dropdown-header">Message Center</h6>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="dropdown-list-image mr-3">
-                      <img
-                        className="rounded-circle"
-                        src="img/undraw_profile_1.svg"
-                        alt="..."
-                      />
-                      <div className="status-indicator bg-success"></div>
-                    </div>
-                    <div className="font-weight-bold">
-                      <div className="text-truncate">
-                        Hi there! I am wondering if you can help me with a
-                        problem I've been having.
-                      </div>
-                      <div className="small text-gray-500">Emily Fowler · 58m</div>
-                    </div>
-                  </a>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="dropdown-list-image mr-3">
-                      <img
-                        className="rounded-circle"
-                        src="img/undraw_profile_2.svg"
-                        alt="..."
-                      />
-                      <div className="status-indicator"></div>
-                    </div>
-                    <div>
-                      <div className="text-truncate">
-                        I have the photos that you ordered last month, how would
-                        you like them sent to you?
-                      </div>
-                      <div className="small text-gray-500">Jae Chun · 1d</div>
-                    </div>
-                  </a>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="dropdown-list-image mr-3">
-                      <img
-                        className="rounded-circle"
-                        src="img/undraw_profile_3.svg"
-                        alt="..."
-                      />
-                      <div className="status-indicator bg-warning"></div>
-                    </div>
-                    <div>
-                      <div className="text-truncate">
-                        Last month's report looks great, I am very happy with
-                        the progress so far, keep up the good work!
-                      </div>
-                      <div className="small text-gray-500">Morgan Alvarez · 2d</div>
-                    </div>
-                  </a>
-                  <a className="dropdown-item d-flex align-items-center" href="#">
-                    <div className="dropdown-list-image mr-3">
-                      <img
-                        className="rounded-circle"
-                        src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                        alt="..."
-                      />
-                      <div className="status-indicator bg-success"></div>
-                    </div>
-                    <div>
-                      <div className="text-truncate">
-                        Am I a good boy? The reason I ask is because someone
-                        told me that people say this to all dogs, even if they
-                        aren't good...
-                      </div>
-                      <div className="small text-gray-500">
-                        Chicken the Dog · 2w
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="dropdown-item text-center small text-gray-500"
-                    href="#"
-                  >
-                    Read More Messages
-                  </a>
-                </div>
-              </li>
-
-              <div className="topbar-divider d-none d-sm-block"></div>
-
-              <li className="nav-item dropdown no-arrow">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="userDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                    Douglas McGee
-                  </span>
-                  <img
-                    className="img-profile rounded-circle"
-                    src="img/undraw_profile.svg"
-                  />
-                </a>
-
-                <div
-                  className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="userDropdown"
-                >
-                  <a className="dropdown-item" href="#">
-                    <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
-                  <div className="dropdown-divider"></div>
-                  <Link
-                    className="dropdown-item"
-                    to="/"
-                    data-toggle="modal"
-                    data-target="#logoutModal"
-                  >
-                    <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="container-fluid bg-white">
-            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+            <ul className="navbar-nav">
+            
               <h1 className="h5 mb-0 text-gray-800">Dashboard</h1>
-              <a
+              {/* <a
                 href="#"
                 className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
               >
                 <i className="fas fa-download fa-sm text-white-50"></i> Generate
                 Report
-              </a>
-            </div>
+              </a> */}
+            </ul>  
+          </nav>
+         
+          <div className="container-fluid bg-white">
+          
 
-            <div className="row">
-              {isCardOpen && <AdminCards/>}
+            <div className="row bg-white">
+              {showCard && <AdminCards/>}
             </div>
           </div>
-         <Outlet/>
+      
+              {isChart && <ChartTable/>}
+              {isCustom && <Outlet/> } 
           {/* {isRoomOpen && <AddRoom/>}
           {isRoomTypeOpen && <CreateRoomType/>}
           {isRoomTypeTable && <RoomTypeTable/>} */}
+          <div  className="bg-white w-100 h-50"></div>
         </div>
       </div>
-
+{/* 
       <a className="scroll-to-top rounded" href="#page-top">
         <i className="fas fa-angle-up"></i>
-      </a>
+      </a> */}
 
     </div>
   );

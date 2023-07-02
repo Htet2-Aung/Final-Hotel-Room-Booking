@@ -41,8 +41,9 @@ const RoomList = () => {
                     image1 = {room.image1}
                     image2 = {room.image2}
                     image3 = {room.image3}
+                    // totalRoom = {room.totalRoom}
                     roomType = {room.roomType}
-
+                  
                 />
             )
         )

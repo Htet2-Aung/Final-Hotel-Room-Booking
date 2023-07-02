@@ -4,6 +4,7 @@ import AdminBooking from "./AdminBooking";
 import {  fetchBooking, getAllBookings, getBookingError, getBookingStatus } from "./bookingSlice";
 
 
+
 const Bookinglist = (props) => {
   const bookingList = useSelector(getAllBookings);
   console.log("List: " + bookingList);
@@ -31,6 +32,7 @@ const Bookinglist = (props) => {
     content = bookingList.map((booking) => (
       <AdminBooking
         no ={index++}
+        key = {booking.id}
         id={booking.id}
         guestName={booking.guestName}
         nrc={booking.nrc}
@@ -38,9 +40,14 @@ const Bookinglist = (props) => {
         countryOfOrigin={booking.countryOfOrigin}
         totalAdults={booking.totalAdults}
         totalChildren={booking.totalChildren}
+        checkIn = {booking.checkIn}
+        checkOut = {booking.checkOut}
         specialRequest={booking.specialRequest}
         createdAt={booking.createdAt}
+        statuss = {booking.statuss}
+        invoiceNo = {booking.payment.invoiceNo}
       />
+     
     ));
   }
 

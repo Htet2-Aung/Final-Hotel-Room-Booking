@@ -11,7 +11,7 @@
   
   .title {
     font-size: 28px;
-    color: royalblue;
+    color: #29bfc2;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -27,13 +27,13 @@
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: #29bfc2;
   }
   
   .title::before {
     width: 18px;
     height: 18px;
-    background-color: royalblue;
+    background-color: #29bfc2;
   }
   
   .title::after {
@@ -77,7 +77,7 @@
     border-radius: 10px;
   }
   
-  .form label .input + span {
+   .form label .input + span {
     position: absolute;
     left: 10px;
     top: 15px;
@@ -96,10 +96,11 @@
     top: 30px;
     font-size: 0.7em;
     font-weight: 600;
-  }
+  } 
   
   .form label .input:valid + span {
-    color: green;
+    color:#29bfc2;
+    ;
   }
   
   .submit {
@@ -108,7 +109,7 @@
     background-color: royalblue;
     padding: 10px;
     border-radius: 10px;
-    color: #fff;
+    color: white;
     font-size: 16px;
     transform: .3s ease;
   }
@@ -134,4 +135,11 @@
     background-color: white;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  .errormessage{
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: red;
+    margin-top:1px;
+    text-align: center;
   }

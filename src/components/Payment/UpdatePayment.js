@@ -91,7 +91,7 @@ const UpdatePayment = () => {
                     Card Number
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     rows="5"
                     id="cardnumber"
                     name="number"

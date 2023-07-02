@@ -1,4 +1,4 @@
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import AdminDashboard from "./components/pages/AdminDashboard";
 import RoomTypeTable from "./components/tables/RoomTypeTable";
@@ -29,9 +29,14 @@ import ProtectedRoute from "./features/auth/ProtectedRoute";
 import UserListTable from "./components/tables/UserListTable";
 import SignUpForm from "./components/User/SignUpForm";
 import LoginForm from "./components/User/LoginForm";
-import BookingTable from "./components/tables/BookingTable";
 import AdminCards from "./components/pages/AdminCards";
 import BookingDetails from "./components/tables/BookingDetails";
+import ChartTable from "./components/tables/ChartTable";
+import SlideShow from "./components/RoomType/SlideShow";
+
+
+
+
 
 function App() {
   return (
@@ -44,6 +49,7 @@ function App() {
             <Route path="/admin/addroom" element={<AddRoom />} />
             <Route path="/admin/createroomType" element={<CreateRoomType />} />
             <Route path="/admin/roomtypeTable" element={<RoomTypeTable />} />
+            <Route path="/admin/chart" element={<ChartTable />} />
             <Route path="/admin/bookingDetails/:bookingId" element={<BookingDetails />} />
             <Route
               path="/admin/roomtypeTable/updateroomType/:roomTypeId"
@@ -72,6 +78,7 @@ function App() {
             path="/room-detail/selectedRoom/:roomId"
             element={<SelectedRoom />}
           />
+          <Route path="/slide" element={<SlideShow />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/facility" element={<Facilities />} />
           <Route path="/login" element={<LoginForm />} />
@@ -83,6 +90,7 @@ function App() {
             <Route path="/selectedRoom" element={<SelectedRoom />} />
             <Route path="/deposite" element={<Deposite />} />
             <Route path="/find-your" element={<YourBooking />} />
+            {/* <Route path="/find-your/updateBooking/:bookingId" element={<UpdateBooking />} /> */}
             <Route path="/form" element={<BookingForm />} />
             <Route path="/paymentInfo" element={<UserPaymentInfo />} />
           </Route>

@@ -40,6 +40,7 @@ const RoomTypeList = (props) => {
                     description = {roomType.description}
                     price = {roomType.price}
                     facilities = {roomType.facilities}
+                    image = {roomType.image}
                     />
             )
         )

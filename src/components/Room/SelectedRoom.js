@@ -20,6 +20,7 @@ const SelectedRoom = () => {
 
   let content;
   if (selectedRooms.length === 0) {
+    console.log("selectedRooms.length"+selectedRooms.length)
     content = <p className="text-center my-4">If you want to book a room, you must select a room.</p>;
   } else {
     content = (
@@ -44,7 +45,7 @@ const SelectedRoom = () => {
       {content}
       <div className="row text-center">
         <Link to="/form">
-        <button className="btn btn-primary mb-2">Proceed To Guest Info</button>
+        <button className="btn mb-2 text-light" style={{backgroundColor: "#29bfc2"}}>Proceed To Guest Info</button>
         </Link>
       </div>
       </form>

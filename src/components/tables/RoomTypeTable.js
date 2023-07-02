@@ -10,6 +10,7 @@ import $ from 'jquery';
 import { fetchRoomType} from '../RoomType/roomTypeSlice';
 import { useDispatch } from 'react-redux';
 import RoomTypeList from '../RoomType/RoomTypeList';
+import classes from './Chart.module.css'
 
 const RoomTypeTable = () => {
 
@@ -25,13 +26,15 @@ const RoomTypeTable = () => {
    $(document).ready(function () {
     setTimeout(function(){
     $('#example').DataTable();
-     } ,1000);
+     } ,500);
 });
 
+
+const card = `card ${classes.card2}`
   
   return (
-    <div className="MainDiv">
-    <div class=" text-center">
+    <div className={card}>
+    <div className=" text-center">
         <h3>Room Type List</h3>
     </div>
      
@@ -42,6 +45,7 @@ const RoomTypeTable = () => {
           <tr>
             <th>No</th>
             <th>Room Type</th>
+            <th>Room Type View</th>
             <th>Description</th>
             <th>Price</th>
             <th>Facilities</th>

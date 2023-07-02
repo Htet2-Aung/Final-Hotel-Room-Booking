@@ -1,38 +1,35 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import FindYourBooking from './FindYourBooking'
-import { getUser } from '../../features/auth/authSlice'
+// import React, { useState } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import FindYourBooking from './FindYourBooking'
+// import { getUser } from '../../features/auth/authSlice'
+// import { useEffect } from 'react'
+// import { fetchRoomByBookingId, getAllRoom } from '../Room/roomSlice'
+// import { fetchBookingRoomByBookingId, getAllBookingRooms, setBookedRoom } from '../BookingRoom/bookingRoomSlice'
 
-const YourBookingRoom = (props) => {
 
-    const user = useSelector(getUser)
-    const bookingId = props.id
-    const bkrooms = props.bookingRoom
-    console.log("find your booking:"+bkrooms)
-    const bkroom=
-    bkrooms.reduce((obj,item) => {
-        obj[item.roomId] = item;
-        return obj;
-    }, {})
+// const YourBookingRoom = ({booking}) => {
 
-    console.log("Your bookingroom .....:"+bkroom)
-  return (
-    <>
-   {
-    bkrooms.map((bk) =>
-    <FindYourBooking
-        room = {bk.room}
-        bookingId = {bookingId}
-    />
-    )
-   }
-   </>
-    )
+//     const dispatch = useDispatch()
+//     // const user = useSelector(getUser)
+//     // const bookingId = booking.id
+   
+//     // console.log("Your Booking room: "+booking)
+//     // const bkRooms = useSelector(getAllBookingRooms);
+//     // console.log("Find your booking with bkRooms"+bkRooms)
+
+    
   
 
-}
+ 
 
-export default YourBookingRoom 
+//     return <FindYourBooking booking1={booking}/>;
+    
+  
+  
+
+// }
+
+// export default YourBookingRoom 
 
 
 // import React from 'react'

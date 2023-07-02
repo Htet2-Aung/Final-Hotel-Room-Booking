@@ -6,7 +6,7 @@ import roomReducer from "../components/Room/roomSlice"
 import bookingReducer from "../components/Booking/bookingSlice"
 import paymentReducer from "../components/Payment/paymentSlice"
 import bookingRoomsReducer from "../components/BookingRoom/bookingRoomSlice"
-
+import emailReducer from "../components/Email/emailSlice"
 
 export const store = configureStore({
     reducer:{
@@ -17,6 +17,6 @@ export const store = configureStore({
         bookings: bookingReducer,
         bookingRooms: bookingRoomsReducer,
         payments : paymentReducer,
-       
+        emails : emailReducer,
     }
 })

@@ -2,7 +2,7 @@
     margin-left: 60px;
     margin-right: 60px;
     margin-top: 10px;
-    background-color:lightcyan; 
+    background-color:#2fd5d8; 
     transition: .2s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
    cursor: pointer; 
    border-radius: 4px;
@@ -14,15 +14,15 @@
   }
  
   .submit{
-    background-color: blue;
-    color: greenyellow;
+    background-color: black;
+    color: light;
     font-weight: bold;
   }
   .submit:hover{
-    background-color: Green;
-    color: skyblue;
+    background-color: white;
+    color: black;
   }
   .label{
 
-     color: blue;
+     color: dark;
   }

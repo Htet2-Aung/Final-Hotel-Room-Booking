@@ -6,7 +6,7 @@ const REGISTER_URL = 'http://localhost:8181/api/user/create'
 const SHOW_USERLIST_URL = 'http://localhost:8181/api/user/all'
 const UPDATE_USER_URL = 'http://localhost:8181/api/user/update'
 const DELETE_USER_URL = 'http://localhost:8181/api/user/delete'
-//const GET_USER_URL = 'http://localhost:8181/api/user/id/'
+const UPDATE_PASSWORD_URL = "http://localhost:8181/api/user/updatePassword";
 
 export const register = createAsyncThunk('users/register', async (data) => {
     console.log(data.user)
@@ -35,6 +35,15 @@ export const updateUser = createAsyncThunk('users/updateUser', async(data) => {
     
     return response.data;
 })
+
+export const updatePassword = createAsyncThunk(
+    "users/updatePassword",
+    async (data) => {
+      const response = await axios.put(UPDATE_PASSWORD_URL, data.user);
+  
+      return response.data;
+    }
+  );
 
 export const deleteUser = createAsyncThunk('users/deleteUser', async(data)=> {
    const {id} = data
@@ -101,6 +110,15 @@ export const userSlice = createSlice({
 
 
             })
+
+            .addCase(updatePassword.fulfilled, (state, action) => {
+                const user = action.payload;
+        
+                const users = state.users.filter((userlist) => userlist.id !== user.id);
+        
+                state.users = [user, ...users];
+              })
+        
 
             .addCase(deleteUser.fulfilled, (state,action) => {
                 state.status = 'Successfully deleted!';

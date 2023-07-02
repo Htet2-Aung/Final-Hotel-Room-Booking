@@ -2,9 +2,10 @@
    
     padding-top: 50px;
     padding-left: 40px;
-    background-color:lightcyan; 
+    background-color:#2fd5d8 ;
      /* height: 200px;  */
-    color: green;
+    color: black;
+   
     
 }
 p{
@@ -15,3 +16,10 @@ p{
     position: relative;
     /* z-index: 99; */
 } 
+.image{
+    width: 4.5rem;
+}
+.imagep{
+    width: 5rem;
+    height: 2.5rem;
+}

@@ -1,10 +1,8 @@
 import classes from "./Payment.module.css";
-import kbzimg from "../images/kbz.png";
 import Card from "../ui/Card";
-import { Link, useNavigate } from "react-router-dom";
-import SmallImg from "../pages/SmallImg";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBooking, getAllBookings, getSelectedBooking } from "../Booking/bookingSlice";
+import { fetchBooking, getAllBookings } from "../Booking/bookingSlice";
 import { useEffect } from "react";
 import { findRoomByselected, getFilteredDate } from "../Room/roomSlice";
 import SelectedRoomItemForBooking from "../Room/SelectedRoomItemForBooking";
@@ -57,11 +55,13 @@ const Payment = () => {
 
    let roomperAdult = count * 2;
    const adult = Number(finalbook.totalAdults)
-   let priceforAdult;
+   let priceforAdult = 0;
   if(roomperAdult < adult){
     priceforAdult = (adult - roomperAdult) * 20000
+    priceforAdult = priceforAdult * nights
   }
   console.log("priceforAdult"+priceforAdult)
+
 
    
       
@@ -93,6 +93,7 @@ const Payment = () => {
  
   //price for room
   let price=0;
+ 
   
   selectedRooms.map((room) => 
       price += room.roomType.price
@@ -103,18 +104,14 @@ const Payment = () => {
   let subtotal = Number(price) * nights
 
   let total = subtotal + priceforAdult;
+  console.log("Total in payment component: "+total)
+  console.log("price in payment component: "+price)
 
   return (
     <section>
          
       <div className="container">
-        <div className={classes.title}>
-          <div className={classes.text2}>
-            <h5 className={classes.text1}>
-              Please Make Payment To Confirm Your Booking
-            </h5>
-          </div>
-        </div>
+        
 
         <div className={classes.position}>
         <form onSubmit={onSubmit}>
@@ -122,7 +119,7 @@ const Payment = () => {
           
             <div className={cardbody1}>
               <div className={classes.text}>
-                <h4 className=" mt-3 medium">BELLAGIO</h4>
+                <h4 className=" mt-3 medium fw-bold text-dark">Relaxation Oasis</h4>
                 <p className="text-muted medium">
                   No.55, Khatter Road, Mingalar Quarter, Aung Ban Township,
                   Kalaw District, Southern Shan State, Myanmar.
@@ -211,28 +208,19 @@ const Payment = () => {
             <div className={cardbody3}>
               <Card>
                 <div
-                  class="accordion accordion-flush"
+                  className="accordion accordion-flush"
                   id="accordionFlushExample"
                 >
-                  <div class="accordion-item">
+                  <div className="accordion-item">
                     <button
-                      class="accordion-button collapsed"
+                      className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseOne"
                       aria-expanded="false"
                       aria-controls="flush-collapseOne"
                     >
-                      <div className='row'>
-                        <div className="col-2 ">
-                          <img className={classes.img} src={kbzimg} alt="" />
-                        </div>
-                        <div className="col-10 ">
-                          <div className="d-flex">
-                            <label className={classes.logo}>KBZ PAY</label>
-                          </div>
-                        </div>
-                      </div>
+                      <h5>Payment</h5>
                     </button>
                     <div
                       id="flush-collapseOne"
@@ -240,7 +228,7 @@ const Payment = () => {
                       data-bs-parent="#accordionFlushExample"
                     >
                       <div className={classes.text}>
-                        <div className="row">
+                        <div className="row mt-3 mb-3">
                           <div className="col-7">
                             <div>Subtotal</div>
                           </div>
@@ -248,14 +236,15 @@ const Payment = () => {
                             <label>{subtotal}</label>
                           </div>
                         </div>
-                        <div className="row">
+                        <div className="row ">
                           <div className="col-7">
-                            <div>Extra Charges</div>
+                            <div>Extra Fees</div>
                           </div>
                           <div className="col-5">
                             <label>{priceforAdult}</label>
                           </div>
                         </div>
+                        <hr style={{border: "1px solid black"}}/>
                         <div className="row">
                           <div className="col-7">
                             <div>Total</div>
@@ -266,7 +255,7 @@ const Payment = () => {
                         </div>
                       </div>
                       <div className="text-center my-2">
-                     <button type="submit" className="btn btn-success mb-2"> Purchase</button>
+                     <button type="submit" className="btn text-light mb-2" style={{backgroundColor: "#29bfc2"}} > Purchase</button>
                      </div>
                     </div>
                   </div>

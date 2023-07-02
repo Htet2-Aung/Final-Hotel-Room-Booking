@@ -7,9 +7,9 @@ const Facilities = (props) => {
 
   const card = `card w-50 px-5 ${classes.modal}`
   return (
-    <div class={card}>
-    <div class="card-body">
-      <h5 class="card-title">Guaranteed Amenities</h5>
+    <div className={card}>
+    <div className="card-body">
+      <h5 className="card-title">Guaranteed Amenities</h5>
      
       {jsxElement}
     </div>

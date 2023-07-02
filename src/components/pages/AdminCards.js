@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import Facilities from '../RoomType/Facilities'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllUsers, getAllUsers } from '../User/userSlice'
 import { fetchBooking, getAllBookings } from '../Booking/bookingSlice'
 import { fetchAllRoom, getAllRoom } from '../Room/roomSlice'
 import { fetchAllPayments, getAllPayments } from '../Payment/paymentSlice'
 import { Link } from 'react-router-dom'
+import { setChart, setCustom } from '../BookingRoom/bookingRoomSlice'
+import classes from './AdminDashboard.module.css'
 
 const AdminCards = () => {
 
@@ -32,16 +33,27 @@ const AdminCards = () => {
   useEffect(()=>{
     dispatch(fetchAllUsers())
     dispatch(fetchBooking())
-    dispatch(fetchAllRoom)
-    dispatch(fetchAllPayments)
+    dispatch(fetchAllRoom())
+    dispatch(fetchAllPayments())
   },[dispatch])
+
+  const showCustom = (e) => {
+    e.preventDefault()
+    dispatch(setCustom(true))
+    dispatch(setChart(false))
+  }
+
+  const card1 = `card border-left-primary  h-100 py-2 ${classes.card}`
+  const card2 = `card border-left-success  h-100 py-2 ${classes.card}`
+  const card3 = `card border-left-info  h-100 py-2 ${classes.card}`
+  const card4 = `card border-left-warning  h-100 py-2 ${classes.card}`
 
   return (
    <>
-   
-    <div className="col-xl-3 col-md-6 mb-4">
-    <Link className="collapse-item" to="/admin/userlist-table">
-                <div className="card border-left-primary shadow h-100 py-2">
+   <div className='row' onClick={showCustom}>
+    <div className="col-xl-3 col-md-6 mb-4" >
+    <Link className="collapse-item" to="/admin/userlist-table" style={{textDecoration: 'none'}}>
+                <div className={card1}>
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                     
@@ -54,7 +66,7 @@ const AdminCards = () => {
                         </div>
                       </div>
                       <div className="col-auto">
-                      <i class='far fa-user fa-2x text-gray-300'></i>
+                      <i className='far fa-user fa-2x text-gray-300'></i>
                       </div>
                     </div>
                   </div>
@@ -64,8 +76,8 @@ const AdminCards = () => {
           
 
               <div className="col-xl-3 col-md-6 mb-4">
-              <Link className="collapse-item" to='/admin/bookingTable'>
-                <div className="card border-left-success shadow h-100 py-2">
+              <Link className="collapse-item" to='/admin/bookingTable' style={{textDecoration: 'none'}}>
+                <div className={card2}>
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
@@ -77,7 +89,7 @@ const AdminCards = () => {
                         </div>
                       </div>
                       <div className="col-auto">
-                      <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      <i className="fas fa-clipboard-list fa-2x text-gray-300" ></i>
                       </div>
                     </div>
                   </div>
@@ -86,8 +98,8 @@ const AdminCards = () => {
               </div>
 
               <div className="col-xl-3 col-md-6 mb-4">
-              <Link className="collapse-item" to="/admin/roomTable">
-                <div className="card border-left-info shadow h-100 py-2">
+              <Link className="collapse-item" to="/admin/roomTable" style={{textDecoration: 'none'}}>
+                <div className={card3}>
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
@@ -115,7 +127,7 @@ const AdminCards = () => {
                         </div>
                       </div>
                       <div className="col-auto">
-                      <i class='fas fa-bed fa-2x text-gray-300'></i>
+                      <i className='fas fa-bed fa-2x text-gray-300'></i>
                       </div>
                     </div>
                   </div>
@@ -124,8 +136,8 @@ const AdminCards = () => {
               </div>
 
               <div className="col-xl-3 col-md-6 mb-4">
-              <Link className="collapse-item" to="/admin/paymentTable">
-                <div className="card border-left-warning shadow h-100 py-2">
+              <Link className="collapse-item" to="/admin/paymentTable" style={{textDecoration: 'none'}}>
+                <div className={card4}>
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
@@ -133,7 +145,7 @@ const AdminCards = () => {
                           Payments
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
-                          {totalPayment}
+                          {totalPayment} MMK
                         </div>
                       </div>
                       <div className="col-auto">
@@ -145,6 +157,8 @@ const AdminCards = () => {
                 </div>
                 </Link>
               </div>
+              </div>
+              <hr style={{border: "1px solid #000000"}}/>
    </>
   )
 }

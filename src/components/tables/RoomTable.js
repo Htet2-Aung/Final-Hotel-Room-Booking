@@ -3,6 +3,7 @@ import RoomList from '../Room/RoomList'
 import { useDispatch } from 'react-redux'
 import { fetchAllRoom } from '../Room/roomSlice'
 import $ from "jquery"
+import classes from './Chart.module.css'
 
 const RoomTable = () => {
 
@@ -15,25 +16,27 @@ const RoomTable = () => {
     $(document).ready(function(){
         setTimeout(function(){
             $('#example').DataTable()
-        },1000)
+        },500)
     })
 
+    const card = `card ${classes.card2}`
   return (
-    <div className="MainDiv">
-    <div class=" text-center">
+    <div className={card}>
+    <div className=" text-center">
         <h3>Room List</h3>
     </div>
      
     <div className="container">
          
-        <table id="example" class="table table-hover table-bordered">
+        <table id="example" className="table table-hover table-bordered">
         <thead>
           <tr>
             <th>No</th>
             <th>Room Type</th>
-            <th>Image1</th>
-            <th>Image2</th>
-            <th>Image3</th>
+            <th>Room's Bed</th>
+            <th>Room's Bath</th>
+            <th>Room's Toilet</th>
+            {/* <th>No of Rooms</th> */}
             <th>Description</th>
             <th>Actions</th>
             

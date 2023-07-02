@@ -3,19 +3,19 @@
     padding: 0.5rem 1.5rem;
     cursor: pointer;
     border-radius: 4px;
-    background-color: #2515fa;
+    background-color: #29bfc2;
     color: white;
-    border: 1px solid #230cf0;
+    border: 1px solid #29bfc2;
     margin: 0 1rem;
   }
   .btn:hover {
-    background-color: blue;
-    border-color: blue;
+    background-color: #29bfc2;
+    border-color: #29bfc2;
   }
   
   .btn--alt {
     background-color: transparent;
-    color: #181bf3;
+    color: #29bfc2;
   }
   
   .btn--alt:hover {

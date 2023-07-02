@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./SearchBar.module.css"
 import { fetchRoomType, getAllRoomType } from "../RoomType/roomTypeSlice";
 import { useEffect, useState } from "react";
-import { addFilteredRoom, getAllRoom, search, setDate } from "../Room/roomSlice";
+import { addFilteredRoom, getAllRoom, setDate, setSearch } from "../Room/roomSlice";
 import { fetchAllBookingRoom } from "../BookingRoom/bookingRoomSlice";
 
 const SearchBar = () => {
@@ -33,18 +33,22 @@ const SearchBar = () => {
     e.preventDefault()
     const filteredRooms = allRooms.filter(room =>  {
 
-      const isRoomAvailable = room.roomType.name === roomTypeName && room.bookingRooms.every(bkroom => {
+      const isRoomAvailable = room.roomType?.name === roomTypeName && room.bookingRooms.every(bkroom => {
 
         return (
           new Date(checkIn) >= new Date(bkroom.checkOut)
          || new Date(checkOut) <= new Date(bkroom.checkIn)
         );
       });
+      console.log("isRoomAvailable"+isRoomAvailable)
+     
       return isRoomAvailable;
+      
     });
       // room.bookingRoom.status != 'Booked' && room.roomType.name === roomTypeName)
     dispatch(addFilteredRoom(filteredRooms))
     dispatch(setDate({checkIn,checkOut}))
+    dispatch(setSearch(true))
     console.log("RoomType Name:"+roomTypeName)
     console.log("Filtered Rooms: "+filteredRooms)
     
@@ -78,9 +82,9 @@ const SearchBar = () => {
   return (
     <div className={classes.modal}>
     <h4 className="ms-2">Search rooms and see the prices</h4>
-    <div class={card}>
+    <div className={card}>
     <form onSubmit={onSubmit}>
-  <div class="row g-0 p-5">
+  <div className="row g-0 p-5">
   <div className="form-group col-md-3 col-sm-6 px-2">
         <label className={label} for="check-in">Check-In</label>
           <input  type="date" className="form-control clickable input-md" id="DtChkIn" placeholder="&#xf133;  Check-In"
@@ -98,7 +102,7 @@ const SearchBar = () => {
           />
         </div>
         <div className="form-group col-md-3 col-sm-6 pt-4 px-2">
-        <select class="form-select" value={roomTypeName} onChange={onRoomTypeChange}  required>
+        <select className="form-select" value={roomTypeName} onChange={onRoomTypeChange}  required>
   <option>Choose Room Type</option>
   {
     (roomType.map((rt) => 

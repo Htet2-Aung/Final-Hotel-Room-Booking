@@ -5,18 +5,18 @@ const Questions = () => {
   return (
     <section>
       <div className={title}>
-        <h3> Frequently Asked Questions</h3>
+        <h3  style={{color: "#29bfc2"}}> Frequently Asked Questions</h3>
       </div>
       <div className={title}>
-        <h5>Booking</h5>
+        <h5  style={{color: "#29bfc2"}}>Booking</h5>
       </div>
 
       <Card>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+        <div className="accordion accordion-flush" id="accordionFlushExample">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseOne"
@@ -28,20 +28,20 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseOne"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 Special requests are at the discretion of the hotel and subject
                 to availability. Keep in mind that if available, there may be an
                 extra charge payable directly to the hotel.
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseTwo"
@@ -53,19 +53,19 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseTwo"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 If you cannot find the confirmed booking, our support team can
                 resend the booking upon your request.
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThree"
@@ -77,10 +77,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseThree"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 If you want to change the guest name , please contact our
                 support team or property directly . But you have to show the
                 booking confirmation status or confirm mail to our customer
@@ -88,10 +88,10 @@ const Questions = () => {
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseFour"
@@ -103,19 +103,19 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseFour"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 Hotel rates change all the time, generally based on availability
                 and demand.
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseFive"
@@ -127,10 +127,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseFive"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 All the rooms will be held under the primary guest name you give
                 during booking. The primary guest must be present when checking
                 in to each room. Please note that it’s not possible to change
@@ -139,10 +139,10 @@ const Questions = () => {
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseSix"
@@ -155,10 +155,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseSix"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 All special requests are subject to availability and cannot be
                 guaranteed by ShweBooking.com. We will forward your request to
                 your preferred property upon availability, and you can follow up
@@ -166,10 +166,10 @@ const Questions = () => {
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseSeven"
@@ -181,10 +181,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseSeven"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 You can extend additional stay depending on the availability of
                 rooms .Make your new booking and choose your new additional
                 dates. You also can contact our support team or property
@@ -208,15 +208,15 @@ const Questions = () => {
       </Card>
 
       <div className={title}>
-        <h5>Payment</h5>
+        <h5  style={{color: "#29bfc2"}}>Payment</h5>
       </div>
 
       <Card>
-        <div class="accordion accordion-flush" id="accordionFlushExample1">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+        <div className="accordion accordion-flush" id="accordionFlushExample1">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseEight"
@@ -229,20 +229,20 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseEight"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample1"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 You’ll receive your confirmation email or sms depending on the
                 info you provided as the guest information after the booking is
                 confirmed.
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseNine"
@@ -255,10 +255,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseNine"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample1"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 You’ll get a confirmation email once your booking is confirmed.
                 This should only take about two minutes but sometimes can take
                 longer. Check your spam/junk mail folders for this email. It may
@@ -267,10 +267,10 @@ const Questions = () => {
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseTen"
@@ -282,10 +282,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseTen"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample1"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 Room charges on our Shwebooking.com include applicable
                 commercial taxes.
               </div>
@@ -295,15 +295,15 @@ const Questions = () => {
       </Card>
 
       <div className={title}>
-        <h5>Cancellation</h5>
+        <h5 style={{color: "#29bfc2"}}>Cancellation</h5>
       </div>
 
       <Card>
-        <div class="accordion accordion-flush" id="accordionFlushExample2">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+        <div className="accordion accordion-flush" id="accordionFlushExample2">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseEleven"
@@ -315,10 +315,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseEleven"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample2"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 You should be able to find the booking conditions and the
                 cancellation policy along with other room information while you
                 are searching. You can also find this information on your
@@ -327,10 +327,10 @@ const Questions = () => {
             </div>
           </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseTwelve"
@@ -342,10 +342,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseTwelve"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample2"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 Any changes you wish to make to your booking are dependent on
                 the policies of your booking. Due to the ongoing impact of
                 COVID-19, certain destinations continue to impose and modify
@@ -358,15 +358,15 @@ const Questions = () => {
       </Card>
 
       <div className={title}>
-        <h5>Check-in</h5>
+        <h5 style={{color: "#29bfc2"}}>Check-in</h5>
       </div>
 
       <Card>
-        <div class="accordion accordion-flush" id="accordionFlushExample3">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+        <div className="accordion accordion-flush" id="accordionFlushExample3">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThirteen"
@@ -378,20 +378,20 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseThirteen"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample3"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 Check-in times are listed on your reservation confirmation. The
                 option to check in early or late is dependent on the hotel's
                 policies and availability.
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseFourteen"
@@ -403,20 +403,20 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseFourteen"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample3"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 You will need the following when checking in to the hotel:
                 Government-issued photo identification such as driver's license
                 or passport, and booking confirmation reference/ mail.
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseFifteen"
@@ -429,10 +429,10 @@ const Questions = () => {
             </h2>
             <div
               id="flush-collapseFifteen"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               data-bs-parent="#accordionFlushExample3"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 You can find details about the property in your confirmation
                 email or on the property detail page. For anything else, you can
                 also contact our customer service team or property directly.

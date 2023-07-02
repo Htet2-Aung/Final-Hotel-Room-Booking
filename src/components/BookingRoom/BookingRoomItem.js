@@ -30,11 +30,11 @@ const BookingRoomItem = (props) => {
     <td>
       <Link to={`/roomTable/updateroom/${props.id}`}>
         
-        <i class="far fa-edit fa-1x text-success mx-4"></i>
+        <i className="far fa-edit fa-1x text-success mx-4"></i>
       </Link>
       <Link onClick={deleteHandler}>
      
-        <i class="far fa-trash-alt fa-1x"></i>
+        <i className="far fa-trash-alt fa-1x"></i>
       </Link>
       {isModalOpen && (
         <ConfirmModal onCancel={closeHandler} onConfirm={confirmHandler} />

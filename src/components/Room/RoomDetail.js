@@ -5,8 +5,8 @@ import classes from "./RoomDetail.module.css"
 import ARoom from "./ARoom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllRoom, findRoomByselected, getAllRoom, getFilteredRoom, selectRoomBYType, setSelected } from "./roomSlice";
-import { useEffect, useState } from "react";
+import { fetchAllRoom, getFilteredRoom, selectRoomBYType } from "./roomSlice";
+import { useEffect } from "react";
 import SelectedRoom from "./SelectedRoom";
 import SearchBar from "../pages/SearchBar";
 
@@ -19,7 +19,8 @@ const RoomDetail = () => {
   console.log("In the room detail with roomtype: "+rooms)
 
   const filteredRooms = useSelector(getFilteredRoom)
-  console.log("In room detail with filtered rooms: "+filteredRooms)
+  console.log("In room detail with filtered rooms: "+(filteredRooms))
+  
 
 
 
@@ -41,8 +42,7 @@ const RoomDetail = () => {
  
 
 const modal = `card ${classes.modal}`
-const card = `card mb-3 ${classes.card3}`;
-const submit = `form-control ${classes.submit}`
+
 
 
       
@@ -92,9 +92,9 @@ const submit = `form-control ${classes.submit}`
     {/* <div className={classes.modal}>
     <h4 className="ms-2">Search rooms and see the prices</h4>
     
-     <div class={card}>
+     <div className={card}>
     <form>
-  <div class="row g-0 p-5">
+  <div className="row g-0 p-5">
   <div className="form-group col-md-3 col-sm-6 px-2">
         <label className="form-check-label" for="check-in">Check-In</label>
           <input  type="date" className="form-control clickable input-md" id="DtChkIn" placeholder="&#xf133;  Check-In"/>
@@ -116,27 +116,29 @@ const submit = `form-control ${classes.submit}`
     </div> */}
     <section>
     <div className="row mt-3">
-        <div className="col-sm-12 col-md-7">
-        {
-          filteredRooms.map(
-            (room) => (
-                <ARoom
-                    id = {room.id}
-                    description = {room.description}
-                    image1 = {room.image1}
-                    image2 = {room.image2}
-                    image3 = {room.image3}
-                    roomTypeId = {room.roomType.id}
-                    roomTypeName = {room.roomType.name}
-                    roomTypePrice = {room.roomType.price}
-                    roomTypeDescription = {room.roomType.description}
-                    roomTypeFacilities = {room.roomType.facilities}
-                    roomSelected = {room.selected}
-                    
-                />
-            ))
-  }
-        </div>
+    <div className="col-sm-12 col-md-7">
+      {
+        filteredRooms.map(
+          (room) => (
+              <ARoom
+              key={room.id}
+                  id = {room.id}
+                  description = {room.description}
+                  image1 = {room.image1}
+                  image2 = {room.image2}
+                  image3 = {room.image3}
+                  totalRoom = {room.totalRoom}
+                  roomTypeId = {room.roomType.id}
+                  roomTypeName = {room.roomType.name}
+                  roomTypePrice = {room.roomType.price}
+                  roomTypeDescription = {room.roomType.description}
+                  roomTypeFacilities = {room.roomType.facilities}
+                  roomSelected = {room.selected}
+                  
+              /> 
+          ))
+}
+      </div>
         <div className="col-sm-12 col-md-4 mt-4">
         <SelectedRoom/>
          

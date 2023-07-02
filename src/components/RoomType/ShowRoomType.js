@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './Room.module.css'
-import RoomTypeList from './RoomTypeList'
 import Room from './Room'
 
 const ShowRoomType = () => {

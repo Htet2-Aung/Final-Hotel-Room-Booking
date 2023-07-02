@@ -33,17 +33,18 @@ const AdminRoomType = (props) => {
     <tr>
       <td>{props.no}</td>
       <td>{props.name}</td>
+      <td><img src={props.image} alt="roomtype image" className="w-100"/></td>
       <td>{props.description}</td>
       <td>{props.price}</td>
       <td>{parse(props.facilities)}</td>
       <td className="px-3">
         <Link to={`/admin/roomtypeTable/updateroomType/${props.id}`}>
           
-          <i class="far fa-edit fa-1x text-success mx-4"></i>
-        </Link>
-        <Link onClick={deleteHandler}>
-       
-          <i class="far fa-trash-alt fa-1x mx-3"></i>
+        <i className="far fa-edit fa-1x mx-4"  style={{color: "#29bfc2"}}></i>
+      </Link>
+      <Link onClick={deleteHandler}>
+     
+        <i className="far fa-trash-alt fa-1x text-danger"></i>
         </Link>
         {isDeleteModal && (
           <ConfirmModal onCancel={closeHandler} onConfirm={confirmHandler} />

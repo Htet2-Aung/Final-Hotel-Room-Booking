@@ -6,18 +6,18 @@ const BookingTable = () => {
     $(document).ready(function(){
         setTimeout(function(){
             $('#example').DataTable()
-        },1000)
+        },500)
     })
 
   return (
     <div className="MainDiv">
-    <div class=" text-center">
+    <div className=" text-center">
         <h3>Booking List</h3>
     </div>
      
     <div className="container">
          
-        <table id="example" class="table table-hover table-bordered">
+        <table id="example" className="table table-hover table-bordered">
         <thead>
           <tr>
             <th>No</th>

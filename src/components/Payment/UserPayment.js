@@ -21,58 +21,58 @@ const UserPayment = (props) => {
   }
   function PaymentInfo() {
     return (
-      <div class={card}>
-      <div class="card-body mx-4">
-        <div class="container">
-          <p class="mx-2 text-center">Thank for your purchase</p>
-          <div class="row">
-            <ul class="list-unstyled">
-              <li class="text-dark">{props.holderName}</li>
-              <li class="text-muted mt-1"><span class="text-dark">{props.cardType}</span></li>
-              <li class="text-dark mt-1">{props.booking.createdAt}</li>
+      <div className={card}>
+      <div className="card-body mx-4">
+        <div className="container">
+          <p className="mx-2 text-center">Thank for your purchase</p>
+          <div className="row">
+            <ul className="list-unstyled">
+              <li className="text-dark">{props.holderName}</li>
+              <li className="text-muted mt-1"><span className="text-dark">{props.cardType}</span></li>
+              <li className="text-dark mt-1">{props.booking.createdAt}</li>
             </ul>
             <hr/>
-            <div class="col-xl-10">
+            <div className="col-xl-10">
               <p>Card Number</p>
             </div>
-            <div class="col-xl-2">
-              <p class="float-end">{props.cardNo}
+            <div className="col-xl-2">
+              <p className="float-end">{props.cardNo}
               </p>
             </div>
             <hr/>
           </div>
-          <div class="row">
-            <div class="col-xl-10">
+          <div className="row">
+            <div className="col-xl-10">
               <p>CVC</p>
             </div>
-            <div class="col-xl-2">
-              <p class="float-end">{props.cvc}
+            <div className="col-xl-2">
+              <p className="float-end">{props.cvc}
               </p>
             </div>
             <hr/>
           </div>
-          <div class="row">
-            <div class="col-xl-10">
+          <div className="row">
+            <div className="col-xl-10">
               <p>Total</p>
             </div>
-            <div class="col-xl-2">
-              <p class="float-end">{props.total}MMK
+            <div className="col-xl-2">
+              <p className="float-end">{props.total}MMK
               </p>
             </div>
             {/* <hr style={{border: "2px solid black"}}/> */}
           </div>
-          {/* <div class="row text-black">
+          {/* <div className="row text-black">
     
-            <div class="col-xl-12">
-              <p class="float-end fw-bold">Total: $10.00
+            <div className="col-xl-12">
+              <p className="float-end fw-bold">Total: $10.00
               </p>
             </div>
             <hr style={{border: "2px solid black"}}/>
           </div> */}
-          <div class="text-center mt-2">
+          <div className="text-center mt-2">
          
-          <div class={classes.action}>
-              <Link class={classes.button} onClick={deleteHandler}>
+          <div className={classes.action}>
+              <Link className={classes.button} onClick={deleteHandler}>
                 Delete
               </Link>
               {isDeleteModal && 

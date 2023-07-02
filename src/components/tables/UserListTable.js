@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { fetchAllUsers } from "../User/userSlice";
 import UserList from "../User/UserList";
+import classes from './Chart.module.css'
 
 const UserListTable = () => {
     const dispatch = useDispatch()
@@ -19,18 +20,20 @@ const UserListTable = () => {
   $(document).ready(function () {
     setTimeout(function(){
     $('#example').DataTable();
-     } ,1000);
+     } ,500);
 });
 
+const card = `card ${classes.card2}`
   return (
-    <div className="MainDiv">
-    <div class=" text-center">
+    <div className={card}>
+    
+    <div className=" text-center">
         <h3>User Information</h3>
     </div>
      
     <div className="container">
          
-        <table id="example" class="table table-hover table-bordered">
+        <table id="example" className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
             <th>No</th>
@@ -48,6 +51,9 @@ const UserListTable = () => {
       </table>
          
       </div>
+
+   
+  
     </div>
   )
 }
